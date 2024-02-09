@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <!--Bootstrap CSS CDN-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body class=bg-dark>
+    <div>
+        <form method="POST" action="" class="col-md-6 mx-auto bg-white p-4 rounded">
+            @csrf
+            <div class="form-group">
+                <label for="name">First Name</label>
+                <input type="text" name="name" class="form-control" placeholder="Enter Name"/>
+            </div>
+
+            <div class="form-group">
+                <label for="name">Second Name</label>
+                <input type="text" name="name" class="form-control" placeholder="Enter Name"/>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" name="email" class="form-control" placeholder="Enter Email"/>
+            </div>
+
+            <div class="form-group">
+                <label for="country">Country</label>
+                <select name="country" class="form-control">
+                    <option value="">Select Country</option>
+                    @foreach($countries as $country)
+                        <option value="{{$country->id}}">{{ $country->country_name }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="dept">Department</label>
+                <select name="department" class="form-control" placeholder="">
+                    <option value="">Select Department</option>
+                    @foreach ($departments as $department)
+                        <option value="{{ $department->id }}">{{ $department->department_name }}</option>
+                    @endforeach
+                    
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" name="password" class="form-control" placeholder="Enter Password"/>
+            </div>
+            <div class="form-group">
+                <label for="password_confirmation">Confirm Password</label>
+                <input type="password" name="confirm_password" class="form-control" placeholder="Confirm Password"/>
+            </div>
+
+            <div>
+                <button type="submit" class="btn btn-primary btn-block">Register</button>
+            </div>
+    </div>
+
+
+    <!-- Bootstrap JS and Popper.js CDN (required for Bootstrap) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
