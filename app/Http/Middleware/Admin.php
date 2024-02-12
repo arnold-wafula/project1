@@ -15,10 +15,12 @@ class Admin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth()->user()->role == 'admin') {
+        // If the user is authenticated and is admin, take the action
+        if (Auth()->user()->role == 'logistic-user') {
             return $next($request);
         }
 
-        abort(401);
+        // If user is not authenticated, take them to the login page
+        return redirect()->route('login')->with('error', 'Please log in to access this page');
     }
 }

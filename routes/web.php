@@ -15,11 +15,17 @@ use App\Http\Controllers\Auth\AdminController;
 */
 
 Route::get('/', function () {
-    //return view('auth.login');
-
-    return "This is the home page";
+    return view('login');
 });
 
 // Admin route
 Route::get('/admin', [AdminController::class, 'index']);
 Route::post('/admin', [AdminController::class, 'create']);
+
+Route::get('/login', [LoginController::class, 'login']);
+
+Route::get('/login', function() {
+    return "This is the login page";
+});
+
+Route::get('/dashboard', [AdminController::class, 'dashboard'])->middleware('role:admin');

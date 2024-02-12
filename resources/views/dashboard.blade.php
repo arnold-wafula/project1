@@ -6,6 +6,6 @@
     <title>Dashboard</title>
 </head>
 <body>
-    
+    <h1>This is the admin dashboard</h1>
 </body>
 </html>

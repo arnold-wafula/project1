@@ -52,8 +52,20 @@
                 </div>
 
                 <div class="col-md-4">
-                <label for="password">Password</label>
-                <input type="password" name="password" class="form-control" placeholder="*******">
+                    <label for="role">Role</label>
+                    <select name="role" class="form-control">
+                        <option value="">Select Role</option>
+                        @foreach($roles as $role)
+                        <option value="{{$role->id}}">{{ $role->role_name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" class="form-control" placeholder="*******">
                 </div>
             </div>
 
