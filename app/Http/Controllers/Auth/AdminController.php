@@ -30,6 +30,6 @@ class AdminController extends Controller
 
         $saved = $user->save();
 
-        dd($saved);
+        //dd($saved);
     }
 }
