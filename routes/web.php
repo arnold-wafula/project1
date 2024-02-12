@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AdminController;
+use App\Http\Controllers\Auth\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,10 +23,7 @@ Route::get('/', function () {
 Route::get('/admin', [AdminController::class, 'index']);
 Route::post('/admin', [AdminController::class, 'create']);
 
-Route::get('/login', [LoginController::class, 'login']);
+Route::get('/login', [LoginController::class, 'index']);
+Route::post('/login', [LoginController::class, 'login']);
 
-Route::get('/login', function() {
-    return "This is the login page";
-});
-
-Route::get('/dashboard', [AdminController::class, 'dashboard'])->middleware('role:admin');
+Route::get('/dashboard', [AdminController::class, 'dashboard']);

@@ -7,7 +7,7 @@
     <!--Bootstrap CSS CDN-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
-<body class="bg-light">
+<body class="bg-dark">
     <div class="container mt-5">
         <form method="POST" action="" class="col-md-6 mx-auto bg-white p-4 rounded">
             @csrf
@@ -63,19 +63,17 @@
             </div>
             
             <div class="row mt-4">
-                <div class="col-md-4">
+                <div class="col-md-12">
                     <label for="password">Password</label>
                     <input type="password" name="password" class="form-control" placeholder="*******">
                 </div>
             </div>
 
             <div class="row mt-4">
-            <div class="col-md-8">
-                <button type="submit" class="btn btn-primary btn-block">Create User</button>
+            <div class="col-md-12">
+            <button type="submit" class="btn btn-primary btn-block">Create User</button>
                 </div>
             </div>
-            
-            
         </form>
     </div>    
 

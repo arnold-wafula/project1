@@ -16,7 +16,7 @@ class AdminController extends Controller
         $countries = Countries::all();
         $departments = Departments::all();
         $roles = Roles::all();
-        //dd($countries);
+        
         return view('admin', compact('countries', 'departments', 'roles'));
     }
 
