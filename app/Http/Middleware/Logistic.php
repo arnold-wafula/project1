@@ -2,13 +2,11 @@
 
 namespace App\Http\Middleware;
 
-use Auth;
-
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class Admin
+class Logistic
 {
     /**
      * Handle an incoming request.
@@ -17,16 +15,16 @@ class Admin
      */
     public function handle(Request $request, Closure $next)
     {
+       
       if (!Auth::check()){
         return redirect('/login');
       }
       if (Auth::user()->role == 1) {
-        return $next($request);
+        return redirect()->route('admin');
     }
     if (Auth::user()->role == 2) {
-        return redirect()->route('logistic');
-    }
-
        
-}
+        return $next($request);
+    }
+    }
 }

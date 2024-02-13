@@ -28,31 +28,49 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }*/
 
+    // Displays the login page
     public function index() {
         return view('login');
     }
 
+    // Attempts to log the user in
     public function login(Request $request) {
+
+       
         $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
+            'email' => 'required|exists:users,email',
+            'password' => 'required',
         ]);
+        dd('ok');
+
+   
 
         if(Auth::attempt($credentials)) {
-            if (Auth::user()->role == 1) {
-                dd('Redirecting to admin');
-                return redirect()->route('admin');
-            } else {
-                dd('Redirecting to dashboard');
-                return redirect()->route('dashboard');
-            }
+            // Debug: Check if authentication is successful
+            dd(Auth::user());
 
-            //dd('ok');
-            session()->regenerate();
- 
-            //return redirect()->route('dashboard');
-        } else {
-            return back()->withErrors(['email' => 'The provided credentials do not match our records.',])->onlyInput('email');
+            switch (Auth::user()->role) {
+                case 1:
+                    dd('Redirected to admin');
+                    return redirect()->route('admin');
+                case 2:
+                    dd('Redirected to dashboard');
+                    return redirect()->route('dashboard');
+                default:
+                    return redirect()->route('login');
+            }
         }
+
+        session()->regenerate();
+        return back()->withErrors(['email' => 'The provided credentials do not match our records.',])->onlyInput('email');
+    }
+
+    public function logout(Request $request) {
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('login')->withSuccess('Logged out successfully');
     }
 }

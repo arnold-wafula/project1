@@ -11,6 +11,9 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
+    /*public function __construct() {
+        $this->middleware('admin');
+    }*/
 
     public function index() {
         $countries = Countries::all();
@@ -31,8 +34,8 @@ class AdminController extends Controller
         $user->role = request('role');
         $user->password = request('password');
 
-        $saved = $user->save();
-
+        $user->save();
+        
         return view('login');
     }
 

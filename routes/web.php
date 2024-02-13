@@ -19,11 +19,17 @@ Route::get('/', function () {
     return view('login');
 });
 
-// Admin route
-Route::get('/admin', [AdminController::class, 'index']);
-Route::post('/admin', [AdminController::class, 'create']);
+Auh::routes();
+
+// Admin
+Route::middleware(['admin'])->group(function(){
+Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+// Route::get('/admin/dashboard', [DashboardController::class, 'admin.dashboard']);
+});
+// Route::post('/admin', [AdminController::class, 'create']);
 
 Route::get('/login', [LoginController::class, 'index']);
 Route::post('/login', [LoginController::class, 'login']);
 
-Route::get('/dashboard', [AdminController::class, 'dashboard']);
+
+// Route::get('/logistic/dashboard', [DashboardController::class, 'logistic.dashboard']);
