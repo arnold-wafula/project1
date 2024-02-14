@@ -21,17 +21,19 @@ Route::get('/', function () {
 
 // Auh::routes();
 Auth::routes();
+
 // Admin
-Route::middleware(['admin'])->group(function(){
-Route::get('/admin', [AdminController::class, 'index'])->name('admin');
-Route::get('/admin/dashboard', [DashboardController::class, 'admin.dashboard']);
+Route::middleware(['admin'])->group(function() { 
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+    Route::post('/admin', [AdminController::class, 'store'])->name('admin.store');
+    
+    Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 });
+
 // Route::post('/admin', [AdminController::class, 'create']);
 
 // Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 // Route::post('/admin', [AdminController::class, 'store'])->name('admin.store');
-
-
 
 
 // Route::get('/logistic/dashboard', [DashboardController::class, 'logistic.dashboard']);
