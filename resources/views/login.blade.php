@@ -9,7 +9,7 @@
 </head>
 <body class="bg-dark">
     <div class="container mt-5">
-        <form method="POST" action="{{ route('login') }}" class="col-md-6 mx-auto bg-white p-4 rounded"> <!--{{route('login')}}-->
+        <form method="POST" action="" class="col-md-6 mx-auto bg-white p-4 rounded">
             @csrf
             <div class="form-group">
                 <label for="employee_id">Email</label>
