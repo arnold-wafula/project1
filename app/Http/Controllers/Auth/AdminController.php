@@ -23,7 +23,7 @@ class AdminController extends Controller
         return view('admin', compact('countries', 'departments', 'roles'));
     }
 
-    public function create() {
+    public function store() {
         $user = new User();
 
         $user->fname = request('fname');
@@ -36,7 +36,7 @@ class AdminController extends Controller
 
         $user->save();
         
-        return view('login');
+        return redirect('admin');
     }
 
     public function dashboard() {
