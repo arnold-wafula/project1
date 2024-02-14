@@ -16,20 +16,25 @@ use App\Http\Controllers\Auth\LoginController;
 */
 
 Route::get('/', function () {
-    return view('login');
+    return view('auth.login');
 });
 
-Auh::routes();
-
+// Auh::routes();
+Auth::routes();
 // Admin
 Route::middleware(['admin'])->group(function(){
 Route::get('/admin', [AdminController::class, 'index'])->name('admin');
-// Route::get('/admin/dashboard', [DashboardController::class, 'admin.dashboard']);
+Route::get('/admin/dashboard', [DashboardController::class, 'admin.dashboard']);
 });
 // Route::post('/admin', [AdminController::class, 'create']);
 
-Route::get('/login', [LoginController::class, 'index']);
-Route::post('/login', [LoginController::class, 'login']);
+// Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+// Route::post('/admin', [AdminController::class, 'store'])->name('admin.store');
+
+
 
 
 // Route::get('/logistic/dashboard', [DashboardController::class, 'logistic.dashboard']);
+
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
