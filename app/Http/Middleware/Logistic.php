@@ -17,7 +17,7 @@ class Logistic
     {
        
       if (!Auth::check()){
-        return redirect('/login');
+        return redirect()->route('login');
       }
       if (Auth::user()->role == 1) {
         return redirect()->route('admin');
