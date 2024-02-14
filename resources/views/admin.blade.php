@@ -9,7 +9,7 @@
 </head>
 <body class="bg-dark">
     <div class="container mt-5">
-        <form method="POST" action="{{ route('admin') }}" class="col-md-6 mx-auto bg-white p-4 rounded">
+        <form method="POST" action="" class="col-md-6 mx-auto bg-white p-4 rounded">
             @csrf
             <div class="row mb-4">
                 <div class="col-md-4">
