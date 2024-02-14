@@ -2,75 +2,62 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Auth;
+
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
 {
-    // Only guests should access the login page
+    /*
+    |--------------------------------------------------------------------------
+    | Login Controller
+    |--------------------------------------------------------------------------
+    |
+    | This controller handles authenticating users for the application and
+    | redirecting them to your home screen. The controller uses a trait
+    | to conveniently provide its functionality to your applications.
+    |
+    */
 
-    /*public function redirectTo() {
-        switch(Auth::user->role){
+    use AuthenticatesUsers;
 
+    /**
+     * Where to redirect users after login.
+     *
+     * @var string
+     */
+    // protected $redirectTo = '/home';
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+  
+
+    public function redirectTo() {
+
+           
+        switch (Auth::user()->role) {
             case 1:
-                $this->redirectTo('admin');
+                $this->redirectTo ='/admin';
                 return $this->redirectTo;
+                break;
             case 2:
-                $this->redirectTo('dashboard');
+                $this->redirectTo ='/logistic';
                 return $this->redirectTo;
+                break;
             default:
-            $this->redirectTo('login');
+                $this->redirectTo='/login';
+                return $this->redirectTo;
         }
-    }*/
-
-    /*public function __construct() {
+        
+    }
+    public function __construct()
+    {
         $this->middleware('guest')->except('logout');
-    }*/
-
-    // Displays the login page
-    public function index() {
-        return view('login');
-    }
-
-    // Attempts to log the user in
-    public function login(Request $request) {
-
-       
-        $credentials = $request->validate([
-            'email' => 'required|exists:users,email',
-            'password' => 'required',
-        ]);
-        dd('ok');
-
-   
-
-        if(Auth::attempt($credentials)) {
-            // Debug: Check if authentication is successful
-            dd(Auth::user());
-
-            switch (Auth::user()->role) {
-                case 1:
-                    dd('Redirected to admin');
-                    return redirect()->route('admin');
-                case 2:
-                    dd('Redirected to dashboard');
-                    return redirect()->route('dashboard');
-                default:
-                    return redirect()->route('login');
-            }
-        }
-
-        session()->regenerate();
-        return back()->withErrors(['email' => 'The provided credentials do not match our records.',])->onlyInput('email');
-    }
-
-    public function logout(Request $request) {
-        Auth::logout();
-
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
-        return redirect()->route('login')->withSuccess('Logged out successfully');
     }
 }
