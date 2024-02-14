@@ -36,7 +36,7 @@ class AdminController extends Controller
 
         $user->save();
         
-        return redirect('admin');
+        return redirect('login');
     }
 
     public function dashboard() {
