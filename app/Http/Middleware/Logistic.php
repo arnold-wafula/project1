@@ -2,6 +2,8 @@
 
 namespace App\Http\Middleware;
 
+use Auth;
+
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,12 +21,13 @@ class Logistic
       if (!Auth::check()){
         return redirect()->route('login');
       }
+
       if (Auth::user()->role == 1) {
         return redirect()->route('admin');
-    }
-    if (Auth::user()->role == 2) {
-       
+      }
+      
+      if (Auth::user()->role == 2) {
         return $next($request);
-    }
+      }
     }
 }
