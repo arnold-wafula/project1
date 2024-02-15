@@ -20,13 +20,13 @@ class Admin
       if (!Auth::check()){
         return redirect()->route('login');
       }
+      
       if (Auth::user()->role == 1) {
         return $next($request);
-    }
-    if (Auth::user()->role == 2) {
+      }
+      
+      if (Auth::user()->role == 2) {
         return redirect()->route('logistic');
+      }
     }
-
-       
-}
 }
