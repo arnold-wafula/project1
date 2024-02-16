@@ -23,6 +23,11 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+
+            // Indexing table fields improves performance when querying tables
+            $table->index('email');
+            $table->index('country');
+            $table->index('department');
         });
     }
 
